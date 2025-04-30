@@ -1,0 +1,9 @@
+[gd_resource type="TextMesh" load_steps=2 format=3 uid="uid://cqdyq7h5tk4am"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gmh"]
+albedo_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+
+[resource]
+material = SubResource("StandardMaterial3D_d5gmh")
+text = "0"
+font_size = 56

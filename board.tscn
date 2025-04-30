@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddaw5dbrhq7vp"]
+
+[ext_resource type="Script" uid="uid://cusygixtlcva" path="res://board.gd" id="1_8l818"]
+[ext_resource type="MeshLibrary" uid="uid://bao6y4ora5ju4" path="res://assets/mesh_library.tres" id="1_p0ybc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8l818"]
+
+[node name="Board" type="Node3D"]
+script = ExtResource("1_8l818")
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 1.27933, 0, 2.6768)
+mesh_library = ExtResource("1_p0ybc")
+physics_material = SubResource("PhysicsMaterial_8l818")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(1, 0, 1, 0, 65535, 2, 1, 65535, 3, 65535, 0, 1441793, 65535, 65534, 655361, 1, 65534, 1048577, 0, 65534, 1048579, 65535, 65535, 655363, 0, 0, 1441795)
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.134436, 0.990922, 0, -0.990922, 0.134436, 1.98275, 3.81046, 2.56736)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.851956, -0.112394, 0.511409, -0.523614, -0.182872, 0.832098, 8.4618e-10, -0.976691, -0.21465, 7.77679, 2.34996, -2.44702)
+
+[node name="CoinGroup" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0089, 1, 1.08957)
