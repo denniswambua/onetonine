@@ -14,11 +14,11 @@ mesh_library = ExtResource("1_p0ybc")
 physics_material = SubResource("PhysicsMaterial_8l818")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(1, 0, 1, 0, 65535, 2, 1, 65535, 3, 65535, 0, 1441793, 65535, 65534, 655361, 1, 65534, 1048577, 0, 65534, 1048579, 65535, 65535, 655363, 0, 0, 1441795)
+"cells": PackedInt32Array(1, 0, 1441795, 0, 65535, 2, 1, 65535, 1048578, 65535, 0, 1441793, 65535, 65534, 655361, 1, 65534, 1048579, 0, 65534, 1048579, 65535, 65535, 655363, 0, 0, 1441795, 2, 0, 1441795, 3, 0, 1, 3, 65534, 1048577, 2, 65535, 1048578, 3, 65535, 3, 2, 65534, 1048579)
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.134436, 0.990922, 0, -0.990922, 0.134436, 1.98275, 3.81046, 2.56736)
+transform = Transform3D(1, 0, 0, 0, 0.134436, 0.990922, 0, -0.990922, 0.134436, 3.4006, 3.81046, 2.56736)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.851956, -0.112394, 0.511409, -0.523614, -0.182872, 0.832098, 8.4618e-10, -0.976691, -0.21465, 7.77679, 2.34996, -2.44702)
@@ -26,4 +26,4 @@ transform = Transform3D(0.851956, -0.112394, 0.511409, -0.523614, -0.182872, 0.8
 [node name="CoinGroup" type="Node3D" parent="."]
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0089, 1, 1.08957)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67569, 1, 1.08957)

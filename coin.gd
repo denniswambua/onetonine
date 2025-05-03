@@ -2,30 +2,27 @@ extends RigidBody3D
 class_name Coin
 
 var text_mesh = preload("res://coin_text_mesh.tres")
+var tween
 
 @export var number:int
-@onready var pickable = $CollisionShape3D
-
-var face: bool = false
-
 
 func _ready() -> void:
-	flip()
 	var numberMesh  = text_mesh.duplicate()
 	numberMesh.text = "%d" % number
 	$Number.mesh = numberMesh
 	
 
 func reveal_coin() -> void:
-	print("revealing")
-	if not face:
+	if abs(rad_to_deg(rotation.z)) >= 90:
 		flip()
-		face = true
 		
 func hide_coin():
-	if face:
-		flip()
-		face = false
+	if  abs(rad_to_deg(rotation.z)) < 90:
+		flip(160)
 
-func flip():
-	rotate_z(deg_to_rad(180))
+func flip(angle=40):
+	tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property($".", "position:y" , 1.5, 0.5)
+	tween.tween_property($".", "rotation_degrees:z", angle, 0.5)
+	
+	#rotate_z(deg_to_rad(180))

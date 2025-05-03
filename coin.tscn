@@ -13,6 +13,7 @@ material = SubResource("StandardMaterial3D_d5gmh")
 height = 0.2
 
 [node name="Coin" type="RigidBody3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 mass = 0.5
 script = ExtResource("1_d5gmh")
 

@@ -34,18 +34,18 @@ func _physics_process(delta: float) -> void:
 	
 	
 func reset_board():
+	print("Reseting board")
 	for child in coinCollection.get_children():
 		child.hide_coin()
 	
-func evaluate(revealed: int):
+func evaluate(revealed: int)-> bool:
 	if next_number == revealed:
 		next_number += 1
-		print("Found")
+		return true
 	else:
-		# fail
-		print("Failed")
-		#next_number = 1
-		#reset_board()
+		next_number = 1
+		return false
+		
 
 func check_plate():
 	var mousepos = get_viewport().get_mouse_position()
@@ -61,7 +61,12 @@ func check_plate():
 		var coin = result.collider
 		
 		coin.reveal_coin()
-		evaluate(coin.number)
+		var res = evaluate(coin.number)
+		
+		if not res:
+			await get_tree().create_timer(2.0).timeout
+			reset_board()
+			
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
