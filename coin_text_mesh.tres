@@ -1,9 +1,15 @@
-[gd_resource type="TextMesh" load_steps=2 format=3 uid="uid://cqdyq7h5tk4am"]
+[gd_resource type="TextMesh" load_steps=3 format=3 uid="uid://cqdyq7h5tk4am"]
+
+[ext_resource type="FontFile" uid="uid://qxq6mp2ewcul" path="res://assets/Comic_Relief/ComicRelief-Regular.ttf" id="1_xm5d8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gmh"]
-albedo_color = Color(0.0214346, 0.0214346, 0.0214346, 1)
+albedo_color = Color(0.351618, 0.304341, 0.205699, 1)
+metallic = 0.5
+metallic_specular = 0.49
+roughness = 0.45
 
 [resource]
 material = SubResource("StandardMaterial3D_d5gmh")
 text = "0"
+font = ExtResource("1_xm5d8")
 font_size = 56

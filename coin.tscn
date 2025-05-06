@@ -1,15 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bc1avd1lbm0w2"]
 
 [ext_resource type="Script" uid="uid://cqqncqdrplg7k" path="res://coin.gd" id="1_d5gmh"]
+[ext_resource type="Material" uid="uid://bjf6voylamv8g" path="res://coin_material.tres" id="2_0t63x"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p0ybc"]
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5gmh"]
-albedo_color = Color(0.984589, 0.926404, 0.714252, 1)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_psm7c"]
-material = SubResource("StandardMaterial3D_d5gmh")
+material = ExtResource("2_0t63x")
 height = 0.2
 
 [node name="Coin" type="RigidBody3D"]

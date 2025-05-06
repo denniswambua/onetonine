@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dga7tiptsvf03"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fj7yv"]
+seamless = true
+noise = SubResource("FastNoiseLite_fj7yv")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
+sky_top_color = Color(0.149289, 0.481051, 0.657799, 1)
+sky_cover = SubResource("NoiseTexture2D_fj7yv")
+
+[sub_resource type="Sky" id="Sky_tlwt5"]
+sky_material = SubResource("ProceduralSkyMaterial_fj7yv")
+
+[resource]
+background_mode = 2
+background_color = Color(0.272482, 0.534522, 0.662253, 1)
+sky = SubResource("Sky_tlwt5")

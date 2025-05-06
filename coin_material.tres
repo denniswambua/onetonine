@@ -1,0 +1,6 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://bjf6voylamv8g"]
+
+[resource]
+albedo_color = Color(1, 1, 0.4, 1)
+clearcoat_enabled = true
+heightmap_scale = 8.71

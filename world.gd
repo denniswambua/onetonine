@@ -2,10 +2,18 @@ extends Node3D
 
 var coin_instance = preload("res://coin.tscn")
 @onready var coinCollection = $CoinGroup
-@onready var start_point = $Marker3D
+@onready var markers = $MarkersGroup
 var layout = []
 var game = []
 var next_number 
+@onready var main_timer =  $Timer
+@onready var main_timer_label = $Gui/HBoxContainer/NinePatchRect/Timer
+@onready var reset_timer = $ResetTimer
+@onready var gauge = $Gui/HBoxContainer/Gauge
+
+var enabled: bool = false
+
+var total_time_in_secs: int = 0
 
 func setup(size=3):
 	"""
@@ -17,24 +25,27 @@ func setup(size=3):
 	
 	layout.shuffle()
 	
-	for i in range(len(layout)):
+	var index = 0
+	for mark in markers.get_children():
 		var coin: Coin = coin_instance.instantiate()
-		coin.number = layout[i]
-		var x = start_point.position.x + i % 3
-		var y =  start_point.position.y
-		var z = start_point.position.z + i / 3
-		coin.position = Vector3(x, y, z)
+		coin.number = layout[index]
+		coin.position = mark.position
 		coinCollection.add_child(coin)
+		index += 1
 
 func _ready() -> void:
 	setup()
+	main_timer.start()
+	enabled = true
 
-func _physics_process(delta: float) -> void:
-	pass
-	
+func _process(delta: float) -> void:
+	if not reset_timer.is_stopped():
+		var left = reset_timer.time_left
+		var total = reset_timer.wait_time
+		gauge.value = left/total*100
+
 	
 func reset_board():
-	print("Reseting board")
 	for child in coinCollection.get_children():
 		child.hide_coin()
 	
@@ -64,10 +75,23 @@ func check_plate():
 		var res = evaluate(coin.number)
 		
 		if not res:
-			await get_tree().create_timer(2.0).timeout
-			reset_board()
+			enabled = false
+			reset_timer.start()
 			
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and enabled:
 		check_plate()
+		
+
+func _on_timer_timeout() -> void:
+	total_time_in_secs += 1
+	var m = int(total_time_in_secs / 60.0)
+	var s = int(total_time_in_secs % 60) #- (m * 60)
+	main_timer_label.text = "%02d:%02d" % [m, s]
+
+
+func _on_reset_timer_timeout() -> void:
+	reset_board()
+	enabled = true
+	reset_timer.stop()
