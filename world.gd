@@ -10,6 +10,9 @@ var next_number
 @onready var main_timer_label = $Gui/HBoxContainer/NinePatchRect/Timer
 @onready var reset_timer = $ResetTimer
 @onready var gauge = $Gui/HBoxContainer/Gauge
+@onready var gui = $Gui
+@onready var menu = $Menu
+@onready var conti = $Menu/HBoxContainer/VBoxContainer/MenuOptions/Continue
 
 var enabled: bool = false
 
@@ -35,8 +38,29 @@ func setup(size=3):
 
 func _ready() -> void:
 	setup()
+	
+
+func start()-> void:
 	main_timer.start()
 	enabled = true
+	menu.hide()
+	gui.show()
+
+
+func pause():
+	if $Timer.paused:
+		Engine.time_scale = 1
+		menu.hide()
+	else:
+		conti.show()
+		menu.show()
+		Engine.time_scale = 0
+
+	main_timer.paused = !main_timer.paused
+	
+func reset():
+	get_tree().reload_current_scene()
+	start()
 
 func _process(delta: float) -> void:
 	if not reset_timer.is_stopped():
@@ -95,3 +119,15 @@ func _on_reset_timer_timeout() -> void:
 	reset_board()
 	enabled = true
 	reset_timer.stop()
+
+
+func _on_new_game_pressed() -> void:
+	start()
+
+
+func _on_pause_pressed() -> void:
+	pause()
+
+
+func _on_continue_pressed() -> void:
+	pause()

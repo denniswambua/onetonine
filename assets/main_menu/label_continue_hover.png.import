@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bakpwcqc5s5xh"
-path="res://.godot/imported/cubes.png-497ceb36c8c47ab268e241c7d9bc0747.ctex"
+uid="uid://cx3v6dwgmggrp"
+path="res://.godot/imported/label_continue_hover.png-b14de25e4db20b236a8aae426da66b28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_menu/cubes.png"
-dest_files=["res://.godot/imported/cubes.png-497ceb36c8c47ab268e241c7d9bc0747.ctex"]
+source_file="res://assets/main_menu/label_continue_hover.png"
+dest_files=["res://.godot/imported/label_continue_hover.png-b14de25e4db20b236a8aae426da66b28.ctex"]
 
 [params]
 
