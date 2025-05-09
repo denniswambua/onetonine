@@ -192,13 +192,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="Winner" type="Label" parent="Menu/HBoxContainer/VBoxContainer/MenuOptions"]
-visible = false
+[node name="Notice" type="Label" parent="Menu/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_gbfbk")
-theme_override_font_sizes/font_size = 48
-text = "Well Done!
-Your time "
+theme_override_font_sizes/font_size = 40
+text = "Challenge your 
+visual memory 
+with numbers"
 horizontal_alignment = 1
 
 [node name="Continue" type="TextureButton" parent="Menu/HBoxContainer/VBoxContainer/MenuOptions"]
@@ -215,6 +215,7 @@ texture_pressed = ExtResource("13_ikiii")
 texture_hover = ExtResource("14_cbp6q")
 
 [node name="Options" type="TextureButton" parent="Menu/HBoxContainer/VBoxContainer/MenuOptions"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("11_70uel")
 texture_pressed = ExtResource("12_70uel")

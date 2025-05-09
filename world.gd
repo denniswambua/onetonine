@@ -13,7 +13,7 @@ var next_number
 @onready var gui = $Gui
 @onready var menu = $Menu
 @onready var conti = $Menu/HBoxContainer/VBoxContainer/MenuOptions/Continue
-@onready var winner =  $Menu/HBoxContainer/VBoxContainer/MenuOptions/Winner
+@onready var notice =  $Menu/HBoxContainer/VBoxContainer/MenuOptions/Notice
 
 @onready var menu_sound = $MenuSound
 @onready var game_sound = $GameSound
@@ -53,7 +53,7 @@ func start()-> void:
 	if started:
 		reset()
 	setup()
-	winner.hide()
+	notice.show()
 	next_number = 1
 	total_time_in_secs = 0
 	main_timer.start()
@@ -172,16 +172,16 @@ func win():
 	
 	menu.show()
 	gui.hide()
-	winner.show()
+	notice.show()
 	conti.hide()
 	var txt = "Well Done!\nYour time: %02d:%02d"  % [m, s]
-	winner.text = txt 
+	notice.text = txt 
 	
 func fail():
 	enabled = false
 	
 	menu.show()
 	gui.hide()
-	winner.show()
+	notice.show()
 	var txt = "Sorry!\n You have failed."
-	winner.text = txt
+	notice.text = txt
