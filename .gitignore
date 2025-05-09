@@ -4,4 +4,6 @@
 /addons/
 /assets/kenney_minigolf-kit/
 *.tmp
+*.zip
 /exports/
+/bin/
