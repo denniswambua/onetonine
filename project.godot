@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="onetonine"
+config/description="Chill memory game.
+Reveal 1 to 9."
 run/main_scene="uid://ddaw5dbrhq7vp"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/image="uid://bakpwcqc5s5xh"
+config/icon="uid://v3tv7e8uvmha"
 
 [editor]
 
@@ -22,4 +25,5 @@ version_control/autoload_on_startup=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

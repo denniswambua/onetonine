@@ -13,8 +13,13 @@ var next_number
 @onready var gui = $Gui
 @onready var menu = $Menu
 @onready var conti = $Menu/HBoxContainer/VBoxContainer/MenuOptions/Continue
+@onready var winner =  $Menu/HBoxContainer/VBoxContainer/MenuOptions/Winner
 
-var enabled: bool = false
+@onready var menu_sound = $MenuSound
+@onready var game_sound = $GameSound
+
+var enabled: bool
+var started: bool
 
 var total_time_in_secs: int = 0
 
@@ -22,6 +27,7 @@ func setup(size=3):
 	"""
 	This setups the game according to size provided.
 	"""
+	layout = []
 	for i in range(1, (size**2) + 1):
 		layout.append(i)
 	next_number = 1
@@ -33,34 +39,57 @@ func setup(size=3):
 		var coin: Coin = coin_instance.instantiate()
 		coin.number = layout[index]
 		coin.position = mark.position
+		coin.fallen.connect(fail)
 		coinCollection.add_child(coin)
 		index += 1
 
 func _ready() -> void:
-	setup()
+	enabled = false
+	started = false
+	menu_sound.play()
 	
 
 func start()-> void:
+	if started:
+		reset()
+	setup()
+	winner.hide()
+	next_number = 1
+	total_time_in_secs = 0
 	main_timer.start()
 	enabled = true
+	started = true
 	menu.hide()
 	gui.show()
+	menu_sound.stop()
+	game_sound.play()
+	
+	get_tree().paused = false
 
 
 func pause():
-	if $Timer.paused:
-		Engine.time_scale = 1
+	if get_tree().paused:
 		menu.hide()
+		get_tree().paused = false
+		menu_sound.stop()
+		game_sound.play()
 	else:
 		conti.show()
 		menu.show()
-		Engine.time_scale = 0
+		get_tree().paused = true
+		menu_sound.play()
+		game_sound.stop()
 
 	main_timer.paused = !main_timer.paused
 	
 func reset():
-	get_tree().reload_current_scene()
-	start()
+	for child in coinCollection.get_children():
+		child.queue_free()
+	main_timer.paused = false
+	started = false
+	main_timer.stop()
+	enabled = false
+	
 
 func _process(delta: float) -> void:
 	if not reset_timer.is_stopped():
@@ -98,6 +127,10 @@ func check_plate():
 		coin.reveal_coin()
 		var res = evaluate(coin.number)
 		
+		if next_number > 9:
+			win()
+			
+		
 		if not res:
 			enabled = false
 			reset_timer.start()
@@ -131,3 +164,24 @@ func _on_pause_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	pause()
+	
+func win():
+	enabled = false
+	var m = int(total_time_in_secs / 60.0)
+	var s = int(total_time_in_secs % 60)
+	
+	menu.show()
+	gui.hide()
+	winner.show()
+	conti.hide()
+	var txt = "Well Done!\nYour time: %02d:%02d"  % [m, s]
+	winner.text = txt 
+	
+func fail():
+	enabled = false
+	
+	menu.show()
+	gui.hide()
+	winner.show()
+	var txt = "Sorry!\n You have failed."
+	winner.text = txt
